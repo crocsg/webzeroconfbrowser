@@ -1,0 +1,1 @@
+{"listeners": ["_ssh._tcp.local.", "_http._tcp.local.", "_workstation._tcp.local.", "_smb._tcp.local.", "_ftp._tcp.local.", "_printer._tcp.local.", "_ipp._tcp.local.", "_nvstream_dbd._tcp.local."]}

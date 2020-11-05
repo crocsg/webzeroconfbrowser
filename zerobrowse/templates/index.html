@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Zeroconf monitored Service types</h1>
+<ul>
+
+    {#
+    {% if services %}
+
+        {% for name in services %}
+            <li><a href='{{ url_for("page_browserajax", servicename=name ) }}'>{{name}}</a></li>
+        {% endfor %}
+    {% endif %}
+    #}
+
+    {% if servicestat %}
+
+        {% for name in servicestat %}
+            <li> <span class="badge badge-pill badge-info">{{ servicestat[name] }}</span> <a href='{{ url_for("page_browserajax", servicename=name ) }}'>{{name}}</a>  </li>
+        {% endfor %}
+    {% endif %}
+</ul>
+
+
+{% endblock %}

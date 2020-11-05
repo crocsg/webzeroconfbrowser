@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <br/>
+    <h1>Zeroconf <span class="text-info">{{servicename}}</span> active services</h1>
+
+  <table class="table table-hover">
+  <thead>
+    <tr >
+        <th scope="col">Hostname</th>
+        <th scope="col">Port</th>
+        <th scope="col">IP</th>
+        <th scope="col">Properties</th>
+    </tr>
+  </thead>
+  <tbody id="datatable">
+
+  </tbody>
+  </table>
+</div>
+
+{% endblock %}
+{% block endscript %}
+<script type="text/javascript">
+function updatedata ()
+{
+    jQuery.support.cors = false;
+
+        $.ajax(
+        {
+            type: "GET",
+            url: "{{ url_for('data_browser', servicequery=servicename) }}",
+            data: "{}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            cache: false,
+            complete: function () {
+
+            },
+            success: function (data) {
+                var trHTML = '';
+
+
+                $.each(data, function (i, item) {
+                    trHTML += '<tr>';
+                    for (c = 0; c < 4; c++) {
+                        trHTML += '<td>' + item[c] + '</td>';
+                    }
+                    trHTML += '</tr>';
+                });
+
+            $("#datatable").html (trHTML);
+
+            },
+
+            error: function (msg) {
+                alert(msg.responseText);
+            }
+        });
+}
+
+$(document).ready(function(){
+    updatedata ();
+    setInterval (function () {updatedata();}, 10000);
+});
+
+</script>
+{% endblock %}

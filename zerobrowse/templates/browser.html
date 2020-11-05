@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <br/>
+    <h1>Zeroconf <span class="text-info">{{servicename}}</span> active services</h1>
+
+  <table class="table table-hover">
+  <thead>
+    <tr >
+        <th scope="col">Hostname</th>
+        <th scope="col">Port</th>
+        <th scope="col">IP</th>
+        <th scope="col">Properties</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in hosts%}
+    <tr >
+        <td>{{s[0]}}</td>
+        <td>{{s[1]}}</td>
+        <td>{{s[2]}}</td>
+        <td>{{s[3]}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+</div>
+
+{% endblock %}
+{% block endscript %}
+<script type="text/javascript">
+$(document).ready(function(){
+    setTimeout (function () {location.reload();}, 10000);
+});
+
+</script>
+{% endblock %}

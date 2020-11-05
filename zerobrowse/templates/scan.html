@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Zeroconf Active Listeners</h1>
+<ul>
+    {% if services %}
+
+        {% for name in services %}
+            <li><a href='{{ url_for("page_browser", servicename=name ) }}'>{{name}}</a></li>
+        {% endfor %}
+    {% endif %}
+</ul>
+    <h1>Zeroconf Scanned Services</h1>
+
+    <ul>
+        {% for name in scanned %}
+        <li>{{ name }} </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
