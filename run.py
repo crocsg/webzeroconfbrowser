@@ -1,3 +1,6 @@
+import time
+time.sleep(30)
+
 from zerobrowse import app
 
 if __name__ == "__main__":
