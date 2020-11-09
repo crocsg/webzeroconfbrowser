@@ -40,13 +40,25 @@ function updatedata ()
             },
             success: function (data) {
                 var trHTML = '';
-
-
+                service = "{{servicename}}";
+                console.log ("service ", service);
                 $.each(data, function (i, item) {
                     trHTML += '<tr>';
                     for (c = 0; c < 4; c++) {
-                        trHTML += '<td>' + item[c] + '</td>';
+                       trHTML += '<td>'
+                       if (service.indexOf("http") != -1 && c== 0)
+                       {
+                            trHTML += "<a href='http://" + item[0] + ":" + item[1] + "' target='_blank'>"+ item[0] +"</a>";
+                            console.log ("service addlink");
+                       }
+                       else
+                            trHTML += item[c];
+                       trHTML +=  '</td>';
+
                     }
+
+
+
                     trHTML += '</tr>';
                 });
 

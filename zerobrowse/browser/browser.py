@@ -58,6 +58,9 @@ class ZeroconfBrowser ():
         for service in self.browser_list[typename].services:
             adresses = []
             properties = []
+
+            if not service[2]:
+                continue
             for adr in service[2].addresses:
                 if zeroconf._is_v6_address(adr):
                     adresses += [':'.join([str(c.hex()) for c in adr])]
@@ -67,7 +70,7 @@ class ZeroconfBrowser ():
             for prop, val in service[2].properties.items():
                 properties += ['{}={}'.format(str(prop, 'utf-8'), str(val, 'utf-8'))]
 
-            host_services += [(service[2].server, service[2].port, ','.join(adresses), ','.join(properties))]
+            host_services += [(service[2].server[:-1], service[2].port, ','.join(adresses), ','.join(properties))]
 
         return host_services
 
